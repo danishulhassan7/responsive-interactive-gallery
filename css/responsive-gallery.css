@@ -1,0 +1,27 @@
+body {
+    background-color: rgba(117, 117, 35, 0.404);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.crop-img {
+    width: 98%;
+    height: 170px;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-bottom: 2%;
+    border-radius: 6%;
+}
+
+.main-img {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.large-img {
+    width: 96%;
+    height: 350px;
+    margin-top: 5%;
+    border-radius: 8%;
+}

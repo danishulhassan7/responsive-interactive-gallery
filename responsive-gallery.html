@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BootStrap CSS  -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/responsive-gallery.css">
+    <title>Image Gallery</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 offset-md-4">
+                <h1 class="display-4">Image Gallery</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <img src="images/black-and-white-photo-of-clocks-707676.jpg" alt="" id="image1" class="crop-img img-thumbnail img-fluid">
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <img src="images/books-1926988.jpg" alt="" id="image2" class="crop-img img-thumbnail img-fluid">
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <img src="images/books-filed-neatly-on-shelves-1907785.jpg" alt="" id="image3" class="crop-img img-thumbnail img-fluid">
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <img src="images/cat.jpg" alt="" id="image4" class="crop-img img-thumbnail img-fluid">
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <img src="images/low-angle-photography-of-flock-of-flying-birds-1386454.jpg" alt="" id="image5" class="crop-img img-thumbnail img-fluid">
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <img src="images/naturejpg.jpg" alt="" id="image6" class="crop-img img-thumbnail img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+                <button type="button" class="my-3 btn btn-dark btn-lg" id="backward">&lt;</button>
+            </div>
+            <div class="col-md-10 main-img">
+                <img src="images/black-and-white-photo-of-clocks-707676.jpg" alt="" id="bigImage" class="large-img img-thumbnail img-fluid">
+            </div>
+            <div class="col-md-1">
+                <button type="button" class="my-3 btn btn-dark btn-lg" id="forward">&gt;</button>
+            </div>
+        </div>
+    </div>
+    <!-- First jquery, then popper and in last BootStrap JS  -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- adding Custom jQuery  -->
+
+    <script type="text/javascript">
+        // whether the slideshow is paused or not
+        var paused = false;
+
+        // when you click on a thumbnail
+        // it sets the src of the big image
+        // to be the same as the image
+        // you clicked on
+        $(".crop-img").click(function() {
+            $("#bigImage").attr('src',
+                $(this).attr('src'));
+        });
+
+        // the counter variable that keeps
+        // track of which image you are showing
+        var counter = 1;
+        // virtually click on the current
+        // image to load it into the big image
+        $("#image" + counter).click();
+
+        // when you click on the backwards
+        // button select the previous image
+        $("#backward").click(function() {
+            // go back one in the counter
+            counter = counter - 1;
+            // if we are below 1 (the first
+            // image) loop round to 4 (the
+            // last image)
+            if (counter < 1) {
+                counter = 6;
+            }
+            // virtually click on the current
+            // image to load it into the big image
+            $("#image" + counter).click();
+        });
+
+        // when you click on the backwards
+        // button select the next image
+        $("#forward").click(function() {
+            // go forward one in the counter
+            counter = counter + 1;
+            // if we are above 4 (the last
+            // image) loop round to 1 (the
+            // first image)
+            if (counter > 6) {
+                counter = 1;
+            }
+            // virtually click on the current
+            // image to load it into the big image
+            $("#image" + counter).click();
+        });
+
+        // when you click the big image 
+        // toggle pausing. Set paused to 
+        // not paused, i.e. if it is paused
+        // set it to not paused, if it is 
+        // not paused set it to paused
+        $("#bigImage").click(function() {
+            paused = !paused;
+        });
+
+        // set interval makes it move 
+        // forward every 3 second
+        setInterval(function() {
+            // first check if it is paused
+            if (!paused) {
+                // virtual click the forward
+                // button
+                $("#forward").click();
+            };
+        }, 3000);
+    </script>
+</body>
+
+</html>
